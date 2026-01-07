@@ -1,0 +1,24 @@
+# 仮想環境
+venv/
+.venv/
+
+# Pythonキャッシュ
+__pycache__/
+*.pyc
+*.pyo
+
+# 環境変数（本番はSecret Managerで管理）
+.env
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+
+# ドキュメント（デプロイには不要）
+docs/
+README.md
+
