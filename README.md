@@ -105,6 +105,46 @@ jancode-tool/
 5. 結果表示（JANあり優先）
 ```
 
+## Cloud Runへのデプロイ
+
+### 前提条件
+
+- Google Cloud SDK (gcloud) がインストール済み
+- GCPプロジェクトが作成済み
+
+### デプロイ手順
+
+```bash
+# 1. ログイン
+gcloud auth login
+
+# 2. プロジェクト設定
+gcloud config set project ifind-data-analysis
+
+# 3. デプロイ
+gcloud run deploy jancode-tool --source . --region asia-northeast1 --allow-unauthenticated
+```
+
+### 環境変数の設定
+
+楽天APIキーなどはCloud Runの環境変数で設定：
+
+```bash
+gcloud run deploy jancode-tool \
+  --source . \
+  --region asia-northeast1 \
+  --allow-unauthenticated \
+  --set-env-vars "RAKUTEN_APP_ID=your_app_id"
+```
+
+### コード変更後の再デプロイ
+
+同じコマンドを再実行するだけ：
+
+```bash
+gcloud run deploy jancode-tool --source . --region asia-northeast1 --allow-unauthenticated
+```
+
 ## 制限事項
 
 - 楽天の商品のみ対象（Amazon等は非対応）
@@ -114,4 +154,6 @@ jancode-tool/
 
 ## 関連ドキュメント
 
+- [デプロイ手順](docs/デプロイ手順.md)
+- [GCP基礎知識](docs/GCP基礎知識.md)
 - [楽天API・JANコード注意点](docs/楽天API_JANコード_注意点.md)
